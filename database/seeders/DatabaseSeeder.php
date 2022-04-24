@@ -12,8 +12,7 @@ use Database\Seeders\ClassroomSeeder;
 use Database\Seeders\BatchSeeder;
 use Database\Seeders\SubjectSeeder;
 use Database\Seeders\BatchTeacherSubjectSeeder;
-use Database\Seeders\Permissions\SpecialActivitySeeder;
-use Database\Seeders\Permissions\SpecialActivityGroupSeeder;
+use Database\Seeders\QuestionSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -24,17 +23,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // RoleSeeder::class,
-            // PermissionSeeder::class,
-            // UserSeeder::class,
-            // CollegeSeeder::class,
-            // DepartmentSeeder::class,
-            // ClassroomSeeder::class,
-            // BatchSeeder::class,
-            // SubjectSeeder::class,
-            // BatchTeacherSubjectSeeder::class,
-            // SpecialActivitySeeder::class,
-            SpecialActivityGroupSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            UserSeeder::class,
+            CollegeSeeder::class,
+            DepartmentSeeder::class,
+            ClassroomSeeder::class,
+            BatchSeeder::class,
+            SubjectSeeder::class,
+            BatchTeacherSubjectSeeder::class,
+            QuestionSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

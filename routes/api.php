@@ -17,6 +17,7 @@ use App\Http\Controllers\API\AttendanceController;
 use App\Http\Controllers\API\BatchTeacherSubjectController;
 use App\Http\Controllers\API\BatchStudentController;
 use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,4 +159,12 @@ Route::group(['prefix' => 'attendances'], function ($router) {
 Route::group(['prefix' => 'profile'], function ($router) {
     Route::get('/getProfile',[ProfileController::class, 'getProfile'])->name('profile.getProfile');
     Route::put('/update',[ProfileController::class, 'update'])->name('profile.update');
+});
+
+
+Route::group(['prefix' => 'feedback'], function ($router) {
+    Route::get('/{attendance_id}/view-feedback',[FeedbackController::class, 'viewFeedback'])->name('feedback.view-feedback');
+    Route::get('/{attendance_id}/add-feedback-permission',[FeedbackController::class, 'addFeedbackPermission']);
+    Route::post('/{attendance_id}/add-feedback',[FeedbackController::class, 'addFeedback']);
+    Route::get('/get-questions',[FeedbackController::class, 'getQuestions']);
 });
