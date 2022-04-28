@@ -167,4 +167,5 @@ Route::group(['prefix' => 'feedback'], function ($router) {
     Route::get('/{attendance_id}/add-feedback-permission',[FeedbackController::class, 'addFeedbackPermission']);
     Route::post('/{attendance_id}/add-feedback',[FeedbackController::class, 'addFeedback']);
     Route::get('/get-questions',[FeedbackController::class, 'getQuestions']);
+    Route::get('/{attendance_id}/get-teacher-profile-pic',[FeedbackController::class, 'getTeacherProfilePic']);
 });

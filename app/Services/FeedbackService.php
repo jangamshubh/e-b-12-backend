@@ -9,6 +9,7 @@ use App\Models\Attendance;
 use App\Models\AttendanceBatch;
 use App\Models\BatchStudent;
 use DB;
+use App\Models\User;
 class FeedbackService {
 
     public function viewFeedback($attendance_id) {
@@ -84,6 +85,14 @@ class FeedbackService {
         }
     }
 
+    public function getTeacherProfilePic($attendance_id) {
+        $user_id = Attendance::where('id',$attendance_id)->pluck('added_by')->first();
+        $user = User::where('id',$user_id)->first();
+        $data['data'] = $user;
+        $data['message'] = 'Teacher Retrieved Successfully';
+        $data['status'] = 'Success';
+        return $data;
+    }
     public function getQuestions() {
         if(Auth::user()->hasRole('Student')) {
             $questions = Question::all();

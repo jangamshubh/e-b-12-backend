@@ -47,6 +47,7 @@ class UserSeeder extends Seeder
             'email' => 'nilima.main@vit.edu.in',
             'mobile_number' => '2013456789',
             'password' => bcrypt('r7=d!PWVgF'),
+            'profile_pic' => 'images/s-akshata.png'
         ]);
         $chemistry_teacher->assignRole('Teacher');
     }

@@ -20,7 +20,7 @@ class FeedbackController extends Controller
                 'third_question' => $feedback['third_question'],
                 'first_question_average' => $feedback['first_question_average'],
                 'second_question_average' => $feedback['second_question_average'],
-                'third_question_average' => $feedback['third_question_average'], 
+                'third_question_average' => $feedback['third_question_average'],
                 'feedback_filled_by' => $feedback['feedback_filled_by'],
                 'total_students' => $feedback['total_students'],
             ]);
@@ -80,5 +80,22 @@ class FeedbackController extends Controller
                 'message' => $feedback['message'],
             ]);
         }
+    }
+
+    public function getTeacherProfilePic($attendance_id) {
+        $service = new FeedbackService;
+        $feedback = $service->getTeacherProfilePic($attendance_id);
+        // if($feedback['status'] == 'success') {
+            return response()->json([
+                'status' => $feedback['status'],
+                'message' => $feedback['message'],
+                'data' => $feedback['data'],
+            ]);
+        // } else {
+        //     return response()->json([
+        //         'status' => $feedback['status'],
+        //         'message' => $feedback['message'],
+        //     ]);
+        // }
     }
 }
