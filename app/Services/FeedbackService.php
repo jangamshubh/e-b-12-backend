@@ -38,6 +38,28 @@ class FeedbackService {
                 $data['status'] = 'success';
                 return $data;
             }
+        } elseif(Auth::user()->hasRole('Super Admin')) {
+            $feedback = Feedback::where('attendance_id',$attendance_id)->get();
+            $first_question = Question::where('id',1)->first();
+            $second_question = Question::where('id',2)->first();
+            $third_question = Question::where('id',3)->first();
+            $first_question_average = Feedback::where('attendance_id',$attendance_id)->where('question_id',1)->average('feedback');
+            $second_question_average = Feedback::where('attendance_id',$attendance_id)->where('question_id',2)->average('feedback');
+            $third_question_average = Feedback::where('attendance_id',$attendance_id)->where('question_id',3)->average('feedback');
+            $batches = AttendanceBatch::where('attendance_id',$attendance_id)->pluck('batch_id')->toArray();
+            $total_students = BatchStudent::whereIn('batch_id',$batches)->count();
+            $feedback_filled_by = $feedback->unique('student_id')->count();
+            $data['first_question'] = $first_question;
+            $data['second_question'] = $second_question;
+            $data['third_question'] = $third_question;
+            $data['first_question_average'] = $first_question_average;
+            $data['second_question_average'] = $second_question_average;
+            $data['third_question_average'] = $third_question_average;
+            $data['feedback_filled_by'] = $feedback_filled_by;
+            $data['total_students'] = $total_students;
+            $data['message'] = 'Feedback Retrieved Successfully';
+            $data['status'] = 'success';
+            return $data;
         }
     }
 

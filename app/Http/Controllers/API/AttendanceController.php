@@ -163,4 +163,21 @@ class AttendanceController extends Controller
             ]);
         }
     }
+
+    public function getAllSuperAdminAttendance() {
+        $service = new AttendanceService;
+        $attendance = $service->getAllSuperAdminAttendance();
+        if ($attendance['status'] == 'success') {
+            return response()->json([
+                'data' => $attendance['data'],
+                'message' => $attendance['message'],
+                'status' => $attendance['status'],
+            ]);
+        } else {
+            return response()->json([
+                'message' => $attendance['message'],
+                'status' => $attendance['status'],
+            ]);
+        }
+    }
 }

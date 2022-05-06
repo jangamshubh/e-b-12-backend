@@ -154,6 +154,7 @@ Route::group(['prefix' => 'attendances'], function ($router) {
     Route::get('/{attendance_id}/getAttendanceStudents', [AttendanceController::class, 'getAttendanceStudents'])->name('attendances.getAttendanceStudents');
     Route::post('/{attendance_id}/takeAttendance', [AttendanceController::class, 'takeAttendance'])->name('attendances.takeAttendance');
     Route::get('/{attendance_id}/show',[AttendanceController::class, 'show'])->name('attendances.show');
+    Route::get('/getAllSuperAdminAttendance',[AttendanceController::class, 'getAllSuperAdminAttendance'])->name('attendances.getAllSuperAdminAttendance');
 });
 
 Route::group(['prefix' => 'profile'], function ($router) {

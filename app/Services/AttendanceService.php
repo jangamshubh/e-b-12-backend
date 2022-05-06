@@ -43,6 +43,14 @@ class AttendanceService {
         }
     }
 
+    public function getAllSuperAdminAttendance() {
+        if(Auth::user()->hasRole('Super Admin')) {
+            $attendance = Attendance::with('attendance_get_subjects','attendance_student_get_attendance')->get();
+            return $this->retrieveSuccessMessage($attendance);
+        }
+
+    }
+
     public function getAllStudentAttendance($subject_id) {
         if(Auth::user()->hasPermissionTo('Get All Student Attendances')) {
             $attendance_ids = Attendance::where('subject_id',$subject_id)->pluck('id')->toArray();
